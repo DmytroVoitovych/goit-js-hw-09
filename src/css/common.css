@@ -16,3 +16,33 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.timer{
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  background-color: #888888;
+  max-width: max-content;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.field{
+  display: inherit;
+  flex-direction: column;
+  align-items: center;
+  
+  font-weight: bold;
+}
+
+.value{
+  font-size: 40px;
+  color:#4169e1;
+  background-color: #141414;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.field{
+  color: #141414;
+}
