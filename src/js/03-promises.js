@@ -4,29 +4,33 @@ const start = document.querySelector('[type="submit"]');
 const step = document.querySelector('[name="step"]');
 const delayQ = document.querySelector('[name="delay"]');
 const amount = document.querySelector('[name="amount"]');
-
+//  let a = 
+//   ;
 function createPromise(position, delay) {
-    
-  return  new Promise((resolve, reject) => {
+  
+  return new Promise((resolve, reject) => {
+  
     setTimeout(() => {
+     
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
         // Fulfill
+         
         resolve(
           {
             position,
-            delay
+            delay,
           }
         )
       } else {
         // Reject
         reject({
           position,
-          delay
+          delay,
         }
         )
       }
-    }, delay)
+    }, +delay )
   });
  
 };
@@ -40,21 +44,27 @@ const disabledButton = () => {
   }
 };
 
-//генерация по клику
-start.addEventListener('click', () => {
+//генерация по
+
+start.addEventListener('click', () => { 
   start.setAttribute('disabled', 'disabled');
   setTimeout(() => start.removeAttribute('disabled'),
-   disabledButton());
+    disabledButton());
+   
   for (let i = 0; i < amount.value; i += 1) {
-    setTimeout(() => {
-      createPromise(step.value, delayQ.value).then(({ position, delay }) => {
-        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-           Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
-      }).catch(({ position, delay }) => {
-         console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);;
+         setTimeout(() => {
+         createPromise(i, delayQ.value).then(({ position, delay }) => {
+           const descriptionTime = (+delay + i * +step.value);
+           const positionTime = +position + 1;
+            console.log(`✅ Fulfilled promise ${positionTime} in ${descriptionTime}ms`);
+           Notify.success(`✅ Fulfilled promise ${positionTime} in ${descriptionTime}ms`);
+         }).catch(({ position, delay }) => {
+        const descriptionTime = (+delay + i * +step.value);
+           const positionTime = +position + 1;
+         console.log(`❌ Rejected promise ${positionTime} in ${descriptionTime}ms`);
+         Notify.failure(`❌ Rejected promise ${positionTime} in ${descriptionTime}ms`);;
       });
-    }, i * step.value);
+    }, i * +step.value);
   };
   });
 
